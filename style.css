@@ -1,0 +1,142 @@
+:root {
+ --bg-gradient: linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+ --accent: #00ffe7;
+ --text: #e0e0e0;
+ --card: rgba(20,20,40,0.9);
+ --glass: rgba(20,20,40,0.6);
+ --divider: linear-gradient(90deg,#00ffe7,#9d00ff);
+}
+
+* { box-sizing:border-box; margin:0; padding:0; font-family:'Roboto Mono', monospace; transition:0.25s; }
+
+body { background: var(--bg-gradient); color: var(--text); min-height:100vh; }
+
+nav {
+ position: fixed; top:0; left:0; width:100%;
+ background: rgba(0,0,0,0.5);
+ backdrop-filter: blur(10px);
+ display:flex; justify-content:space-between; padding:12px 24px; z-index:999;
+}
+
+nav a { color: var(--text); text-decoration:none; margin:0 12px; font-weight:600; font-family:'Orbitron',sans-serif; transition:0.25s; }
+nav a:hover { color: var(--accent); transform: scale(1.1); }
+
+.container { max-width:1100px; margin:140px auto 50px; padding:0 24px; }
+
+.hero { text-align:center; margin-bottom:60px; }
+.hero h1 { font-family:'Orbitron',sans-serif; font-size:3rem; color:var(--accent); margin-bottom:20px; }
+.hero p { font-size:1.2rem; color:#cfcfcf; line-height:1.6; }
+
+.card { background:var(--card); border-radius:16px; padding:24px; box-shadow:0 8px 20px rgba(0,255,231,0.2); margin-bottom:40px; backdrop-filter:blur(5px); }
+
+hr.divider { border:none; height:3px; background:var(--divider); border-radius:2px; margin:60px 0; }
+
+.btn {
+ background: var(--accent); color:#000; padding:12px 20px; border-radius:12px; border:none; font-weight:700;
+ font-family:'Orbitron',sans-serif; cursor:pointer; margin-top:16px; transition:all 0.25s;
+}
+.btn:hover { box-shadow:0 0 20px var(--accent); transform:scale(1.05); }
+
+/* Profile fields */
+.profile-field { margin:12px 0; }
+.profile-field label { display:block; margin-bottom:6px; font-weight:600; }
+.profile-field input, .profile-field select { width:100%; padding:8px 10px; border-radius:8px; border:none; background:var(--glass); color:var(--text); }
+
+/* Quiz answers */
+.answers { display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+.answer { padding:12px; border-radius:12px; border:1px solid rgba(0,255,231,0.2); cursor:pointer; transition: all 0.2s; background:var(--glass); }
+.answer:hover { transform: scale(1.03); box-shadow:0 0 12px var(--accent); }
+.answer.selected { border-color: var(--accent); box-shadow:0 0 20px var(--accent); }
+
+/* Chart container */
+.chart-container { margin-top:24px; }
+
+/* Responsive */
+@media(max-width:980px){
+ .container { padding:0 16px; margin-top:120px; }
+ .hero h1 { font-size:2.2rem; }
+}
+
+/* Esempio di alto contrasto */
+.high-contrast {
+ --text: #ffffff; /* Testo completamente bianco */
+ --card: #000000; /* Sfondo card completamente nero */
+ --accent: #ffff00; /* Accento giallo brillante per maggiore visibilità */
+}
+
+/* Input e Select al focus */
+.profile-field input:focus, 
+.profile-field select:focus {
+ outline: none; /* Rimuovi l'outline di default */
+ border: 1px solid var(--accent);
+ box-shadow: 0 0 10px var(--accent); /* Aggiungi il glow focus */
+}
+
+/* Aggiungi questa regola (opzionale, ma migliora l'animazione) */
+#progressBar {
+ transition: width 0.8s ease-out; /* Animazione lenta e morbida */
+}
+
+/* Nuove regole */
+.result-percent {
+ font-family: 'Orbitron', sans-serif;
+ font-size: 4rem;
+ font-weight: 700;
+ color: var(--accent);
+ text-shadow: 0 0 15px var(--accent); /* Effetto neon */
+}
+.profile-label {
+ font-size: 1.1rem;
+ color: #a0a0a0;
+ margin-top: -10px;
+}
+/* Stili Generali per i contenitori dei grafici (se non specificato) */
+#dashboard .chart-container {
+  /* ALTEZZA AUMENTATA A 350px per un aspetto spazioso */
+  height: 350px; 
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+/* REGOLA SPECIFICA per il Grafico Regionale (che deve essere più alto) */
+#dashboard #regionChartContainer {
+  /* Questa altezza è corretta per 20+ regioni */
+  height: 300px !important; 
+  width: 300px; 
+}
+
+/* ==================================== */
+/* FOOTER STYLES */
+/* ==================================== */
+
+.site-footer {
+    /* Sfondo scuro semitrasparente come la navbar */
+    background: rgba(0,0,0,0.5); 
+    backdrop-filter: blur(5px);
+    color: var(--text);
+    padding: 25px 0;
+    text-align: center;
+    border-top: 2px solid var(--accent); /* Linea neon di separazione */
+    margin-top: 50px;
+    font-size: 0.9rem;
+    position: relative; /* Per il blur */
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.site-footer p {
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.authors {
+    font-family: 'Orbitron', sans-serif; /* Usa il font futuristico */
+    color: var(--accent); /* Colore neon */
+    font-size: 1rem;
+    font-weight: 700;
+    text-shadow: 0 0 5px var(--accent); /* Piccolo glow */
+}

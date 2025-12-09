@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Gender Gap Futuristic</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto+Mono&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <nav>
+    <div style="font-family:'Orbitron', sans-serif; font-size:1.4rem;">DG Futuristic</div>
+    <div>
+      <a href="#hero">Home</a>
+      <a href="#user-profile">Profilo</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#results">Risultati</a>
+      <a href="#dashboard">Dashboard</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <section class="hero" id="hero">
+      <h1>Digital Gender Gap in Italia</h1>
+      <p>Scopri la tua posizione nel contesto della digitalizzazione italiana combinando il tuo profilo personale
+        con dati ufficiali ISTAT e DESI.</p>
+      <p>Confronta genere, età, istruzione e regione con grafici interattivi, e ricevi consigli personalizzati per
+        migliorare le competenze digitali.</p>
+      <p>Il Digital Gender Gap rappresenta le disuguaglianze tra uomini e donne nell'accesso e nell'uso delle
+        tecnologie digitali. Le donne in Italia, soprattutto in alcune fasce d'età e regioni, presentano spesso
+        un divario significativo. Migliorare le competenze digitali è fondamentale per ridurre questa differenza.
+      </p>
+      <button class="btn"
+        onclick="document.getElementById('user-profile').scrollIntoView({behavior:'smooth'});">Inserisci i tuoi
+        dati</button>
+    </section>
+
+    <hr class="divider">
+
+    <section class="card" id="user-profile">
+      <h2>Inserisci i tuoi dati</h2>
+      <div class="profile-field">
+        <label>Età (6-65, le fasce ISTAT partono da 6 anni):</label>
+        <input type="number" id="age" min="6" max="100" placeholder="Inserisci la tua età">
+      </div>
+      <div class="profile-field">
+        <label>Genere (dati ISTAT):</label>
+        <select id="gender">
+          <option value="">Seleziona</option>
+          <option value="Maschi">Uomo</option>
+          <option value="Femmine">Donna</option>
+          <option value="Totale">Altro / Non Specificato</option>
+        </select>
+      </div>
+      <div class="profile-field">
+        <label>Istruzione:</label>
+        <select id="education">
+          <option value="">Seleziona</option>
+          <option value="low_no">Nessun titolo / Elementare</option>
+          <option value="low">Licenza Media</option>
+          <option value="medium">Diploma</option>
+          <option value="high">Laurea e post-laurea</option>
+        </select>
+      </div>
+      <div class="profile-field">
+        <label>Regione:</label>
+        <select id="region">
+          <option value="">Seleziona</option>
+          <option value="Piemonte">Piemonte</option>
+          <option value="Valle d'Aosta / Vallée d'Aoste">Valle d'Aosta / Vallée d'Aoste</option>
+          <option value="Liguria">Liguria</option>
+          <option value="Lombardia">Lombardia</option>
+          <option value="Trentino-Alto Adige / Südtirol">Trentino-Alto Adige / Südtirol</option>
+          <option value="Veneto">Veneto</option>
+          <option value="Friuli-Venezia Giulia">Friuli-Venezia Giulia</option>
+          <option value="Emilia-Romagna">Emilia-Romagna</option>
+          <option value="Toscana">Toscana</option>
+          <option value="Umbria">Umbria</option>
+          <option value="Marche">Marche</option>
+          <option value="Lazio">Lazio</option>
+          <option value="Abruzzo">Abruzzo</option>
+          <option value="Molise">Molise</option>
+          <option value="Campania">Campania</option>
+          <option value="Puglia">Puglia</option>
+          <option value="Basilicata">Basilicata</option>
+          <option value="Calabria">Calabria</option>
+          <option value="Sicilia">Sicilia</option>
+          <option value="Sardegna">Sardegna</option>
+        </select>
+      </div>
+      <button class="btn" onclick="startQuiz()">Inizia Quiz</button>
+    </section>
+
+
+    <section class="card" id="quiz" style="display:none;">
+      <h2>Quiz Interattivo</h2>
+      <div id="quiz-card"></div>
+      <div style="margin-top:16px;">
+        <button class="btn" onclick="prevQ()">Precedente</button>
+        <button class="btn" onclick="nextQ()">Prossimo</button>
+        <button class="btn" id="submitBtn" onclick="submitQuiz()" style="display:none;">Vedi
+          Risultati</button>
+      </div>
+    </section>
+
+
+
+    <section class="card" id="results" style="display:none;">
+      <h2>Risultati</h2>
+      <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+        <div>
+          <div class="result-percent" id="resultPercent">0%</div>
+          <div class="profile-label" id="profileLabel">Profilo: —</div>
+        </div>
+        <div style="flex:1">
+          <div class="progress"
+            style="height:12px; background:rgba(20,20,40,0.6); border-radius:12px; overflow:hidden; border: 1px solid rgba(0,255,231,0.2);">
+            <i id="progressBar"
+              style="display:block; height:100%; width:0%; background:var(--accent); border-radius:12px;"></i>
+          </div>
+        </div>
+      </div>
+      <div class="chart-container" style="height: 350px;">
+        <h3 style="color:var(--text);">Confronto con i Benchmark ISTAT</h3>
+        <canvas id="compareChart"></canvas>
+      </div>
+
+      <div class="chart-container" style="height: 400px; margin-top: 30px;">
+        <h3 style="color:var(--text);">Diagnosi Dettagliata delle 5 Competenze (0-100%)</h3>
+        <canvas id="radarChart"></canvas>
+      </div>
+
+      <div class="card" style="margin-top:24px;">
+        <h4 style="color:var(--accent);">Giustificazione e Contesto DESI</h4>
+        <p id="justificationText">—</p>
+      </div>
+
+      <div class="card" id="feedbackSuggestions" style="margin-top:24px;">
+        <h4 style="color:var(--accent);">Prossimi Passi Consigliati</h4>
+        <ul id="suggestionsList">
+        </ul>
+      </div>
+
+    </section>
+
+    <hr class="divider">
+
+    <section class="card" id="dashboard">
+      <h2 style="color:var(--accent);">Dashboard Comparativa</h2>
+      <div style="margin-top: 20px; display: block;">
+
+        <div class="chart-container" style="height: 250px; width: auto; ">
+          <h3 style="color:var(--text); margin-top: 100px; text-align: center;">Divario di Genere</h3>
+          <canvas id="genderChart"></canvas>
+        </div>
+        <div class="chart-container" style="height: 250px; width: auto; ">
+          <h3 style="color:var(--text); margin-top: 100px; text-align: center;">Competenza per Età</h3>
+          <canvas id="ageChart"></canvas>
+        </div>
+        <div class="chart-container" style="height: 250px; width: auto;">
+          <h3 style="color:var(--text); margin-top: 100px; text-align: center;">Competenza per Istruzione</h3>
+          <canvas id="educationChart"></canvas>
+        </div>
+        <div class="chart-container" id="regionChartContainer" style="height: 350px; width: auto; ">
+          <h3 style="color:var(--text); margin-top: 100px; text-align: center;">Competenza per Regione</h3>
+          <canvas id="regionChart"></canvas>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <script src="app.js"></script>
+  <footer class="site-footer">
+        <div class="footer-container">
+            <p>&copy; 2024 Digital Gender Gap Futuristic | Progetto sviluppato da:</p>
+            <div class="authors">
+                <span>Kevin Cagnazzo</span> |
+                <span>Matteo Verardi</span> |
+                <span>Matteo Trazza</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
+</body>
+
+</html>

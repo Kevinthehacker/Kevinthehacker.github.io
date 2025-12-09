@@ -1,0 +1,43 @@
+{
+  "averageScore": 82.7,
+  "desiHumanCapitalScore": 47.9, 
+  "gender": {
+    "Maschi": 85.3,
+    "Femmine": 78.9,
+    "Totale": 82.7
+  },
+  "age": {
+    "6-24 anni": 97.0,
+    "25-44 anni": 88.5,
+    "45-64 anni": 76.0,
+    "65 anni e più": 50.1
+  },
+  "education": {
+    "low_no": 65.0,
+    "low": 83.8,
+    "medium": 93.4,
+    "high": 97.4
+  },
+  "region": {
+    "Piemonte": 85.0,
+    "Valle d'Aosta / Vallée d'Aoste": 86.5,
+    "Liguria": 82.5,
+    "Lombardia": 87.5,
+    "Trentino-Alto Adige / Südtirol": 89.0,
+    "Veneto": 84.0,
+    "Friuli-Venezia Giulia": 83.5,
+    "Emilia-Romagna": 84.5,
+    "Toscana": 83.0,
+    "Umbria": 81.0,
+    "Marche": 80.5,
+    "Lazio": 83.5,
+    "Abruzzo": 79.5,
+    "Molise": 78.0,
+    "Campania": 77.5,
+    "Puglia": 76.0,
+    "Basilicata": 76.5,
+    "Calabria": 75.5,
+    "Sicilia": 74.0,
+    "Sardegna": 73.5
+  }
+}
